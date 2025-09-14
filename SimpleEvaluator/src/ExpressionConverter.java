@@ -1,3 +1,5 @@
+import javax.xml.transform.Source;
+import java.sql.SQLOutput;
 import java.util.List;
 import java.util.Stack;
 
@@ -22,7 +24,9 @@ public class ExpressionConverter {
                     default -> throw new IllegalArgumentException("Invalid operator: " + component);
                 }
             }
-            stack.peek();
+            //stack trace
+            System.out.println("Current Index: " + component +
+                    "\nStack rn: " + stack + "\n");
         }
         return stack.pop();
     }
