@@ -13,14 +13,12 @@ public class Main {
 
         try {
             double result = converter.evaluatePostfix(expression);
-            System.out.println("Result: " + result);
+            System.out.println("Evaluation Result: " + result);
         } catch (Exception e) {
-            System.out.println("Try again.");
+            System.out.println("\nTry again.");
         } finally {
             sc.close();
         }
-
-
 
     }
 }
