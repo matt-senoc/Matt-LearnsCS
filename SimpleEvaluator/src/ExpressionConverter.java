@@ -8,7 +8,7 @@ public class ExpressionConverter {
     public double evaluatePostfix(String postfix) {
         Stack<Double> stack = new Stack<>();
 
-        //loops each component by splitting
+        //loops each component of the string
         for (String component : postfix.split(" ")) {
             if (!isOperator(component)) {
                 stack.push(Double.parseDouble(component));
@@ -31,7 +31,7 @@ public class ExpressionConverter {
         return stack.pop();
     }
 
-    //determines operator
+    //determines component
     public boolean isOperator(String operator) {
         return List.of("*", "/", "+", "-").contains(operator);
     }
