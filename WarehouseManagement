@@ -1,1 +1,150 @@
-file
+import java.util.ArrayDeque;
+import java.util.*;	
+
+		
+
+	// Item class
+	class Item {
+		String code;
+		String name;
+		int quantity;
+	
+	
+	// Constructor
+	Item(String code, String name, int quantity) {
+		this.code = code;
+		this.name = name;
+		this.quantity = quantity;
+	// assign fields
+	}
+	
+	
+		// toString() -> return formatted string
+	}
+
+	
+
+	// Truck class
+	class Truck {
+		String plate;
+		String driver;
+	
+	
+	// Constructor
+	Truck(String plate, String driver) {
+		this.plate = plate;
+		this.driver = driver;
+	
+	// assign fields
+	}
+	
+	
+		// toString() -> return formatted string
+	}
+
+
+	class WarehouseLoadingSystem {
+		
+		
+		// Data structures
+		ArrayDeque<Item> warehouseStack = new ArrayDeque<>();
+		ArrayDeque<Truck> truckQueue = new ArrayDeque<>();
+		private Scanner sc;
+	
+		// Store item
+		void storeItem() {
+			
+			System.out.println("Enter Item Code:");
+			String code = sc.nextLine();
+			System.out.println("Enter Item Name:");
+			String name = sc.nextLine();
+			System.out.println("Enter Item Quantity:");
+			int quantity = sc.nextInt();
+			
+			Item item = new Item(code,name,quantity);
+			warehouseStack.push(item);
+			
+		// ask user for code, name, quantity
+		// create Item object
+		// warehouseStack.push(item);
+		}
+	
+	
+		// View stack
+		void viewWarehouseStack() {
+			System.out.println("Items waiting FRONT → ");
+			warehouseStack.forEach(System.out :: println);
+			System.out.println("Items waiting ← REAR");
+		// print "TOP →"
+		// loop through warehouseStack
+		// print each item
+		// print "← BOTTOM"
+		}
+	
+	
+		// Register truck
+		void registerTruck() {
+			
+			System.out.println("Enter Truck Plate:");
+			String plate = sc.nextLine();
+			System.out.println("Enter Truck Driver:");
+			String driver = sc.nextLine();
+			Truck truck = new Truck(plate, driver);
+			truckQueue.push(truck);
+			
+		// ask user for plate, driver
+		// create Truck object
+		// truckQueue.offer(truck);
+		}
+	
+	
+		// View trucks
+		void viewWaitingTrucks() {
+			System.out.println("Trucks waiting FRONT → ");
+			truckQueue.forEach(System.out :: println);
+			System.out.println("Trucks waiting ← REAR");
+			
+		// print "FRONT →"
+		// loop through truckQueue
+		// print each truck
+		// print "← REAR"
+		}
+	
+	
+		// Load truck
+		void loadNextTruck() {
+			if (!warehouseStack.isEmpty() && !truckQueue.isEmpty()) {
+				String loaded  =  "Loaded: " + warehouseStack.pop() + " into " + truckQueue.poll();				
+			} else System.out.println("No items or trucks available");
+		// pop item from warehouseStack
+		// poll truck from truckQueue
+		// if both not null → print "Loaded: [item] → [truck]"
+		// else → print "No items or trucks available"
+		}
+	
+	
+		// Main menu
+		void run() {
+			int choice;
+			System.out.println("Enter Choice: ");
+			choice = sc.nextInt();
+			do {
+				
+			// display menu
+			// read choice
+				switch(choice) {
+					case 1: storeItem(); break;
+					case 2: viewWarehouseStack(); break;
+					case 3: registerTruck(); break;
+					case 4: viewWaitingTrucks(); break;
+					case 5: loadNextTruck(); break;
+					case 0: System.out.println("Exiting..."); break;
+					default: System.out.println("run error");
+				}
+			} while(choice != 0);
+		}
+	
+	
+		public static void main(String[] args) {
+			new WarehouseLoadingSystem().run();
+		}
