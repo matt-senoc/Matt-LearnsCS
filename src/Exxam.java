@@ -1,6 +1,8 @@
 package nicker;
 import java.util.ArrayDeque;
+import java.util.Collections;
 import java.util.Deque;
+import java.util.PriorityQueue;
 import java.util.Scanner;
 
 public class exam {
@@ -18,24 +20,34 @@ public class exam {
 					+ "\n4. Exit.");
 			decision = sc.nextInt();
 		switch (decision) {
-				case 1: break;
-				case 2: break;
-				case 3: break;
-				case 4: break;
-				
-				
+				case 1: queueMeth(); break;
+				case 2: displayQueueMeth(); break;
+				case 3: treatPatientMeth(); break;
 			default:
 				throw new IllegalArgumentException("Unexpected value: " + decision);
 			}
 		
-		} while (decision > -1);
-		
+		} while (decision > -1 && decision < 3);		
+	}
+	
+	
+	
+	private static void treatPatientMeth() {
+//		treat
 		
 		
 	}
-	
-	class queueMeth(){
 
+
+
+	private static void displayQueueMeth() {
+		///display
+	}
+
+
+	public static void queueMeth() {
+		
+		Scanner sc = new Scanner(System.in);
 		System.out.println("Enter patient name:");
 		String Pname = sc.next();
 	
@@ -48,9 +60,33 @@ public class exam {
 		System.out.println("Enter patient name:");
 		String time = sc.next();
 		
-		ERQueue er = new ERQueue();
-		er.arrive(Pname, prio, med_condition, time);
+	
+		PriorityQueue<Integer> pq = new PriorityQueue<>();
+		pq.add(Pname, prio, med_condition, time);
+		
+	
+			
+//		adding
+//		PriorityQueue<Integer> pq = new PriorityQueue<>();
+//		pq.queueMeth(Pname, prio, med_condition, time);
+
+		System.out.println("PriorityQueue: " + pq); // Output: [5, 10, 20]	
+		
+//		access
+		System.out.println("Head of Queue: " + pq.peek()); // Output: 5
+		
+//		removing
+		System.out.println("Removed: " + pq.poll()); // Output: 5
+		System.out.println("PriorityQueue after removal: " + pq); // Output: [10, 20]
+//		comparator
+		PriorityQueue<Integer> reversedQueue = new PriorityQueue<>(Collections.reverseOrder());
+		reversedQueue.add(1);
+		reversedQueue.add(3);
+		reversedQueue.add(2);
+
+		System.out.println(reversedQueue.poll()); // Output: 3
 	}
+
 }
 /*
 
